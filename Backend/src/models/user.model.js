@@ -21,6 +21,15 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.methods.toPublicProfile = function() {
+    return {
+        id: this._id,
+        name: this.name,
+        email: this.email,
+        role: this.role
+    };
+};
+
 const User = mongoose.model('User', userSchema);
 
 export default User;

@@ -1,5 +1,5 @@
 import express from 'express';
-import { register ,login} from '../controllers/auth.controller.js';
+import { register ,login, getMe,logout} from '../controllers/auth.controller.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/register',register);
 router.post('/login',login);
-// router.post('/getme',requireAuth, getMe);  //protected routes
-// router.post('/logout',requireAuth ,logout); //protected routes
+router.post('/getme',requireAuth, getMe);  //protected routes
+router.post('/logout',requireAuth ,logout); //protected routes
 
 export default router;
