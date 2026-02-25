@@ -68,7 +68,7 @@ export const getAllStreams=async(req,res)=>{
         }
 
         const streams=await Stream.find(filter)
-        .populate('streamerId', 'username avatar displayName followerCount')
+        .populate('streamerId', 'name avatar bio followersCount')
         .sort({viewerCount: -1})
         .lean();
 
@@ -90,7 +90,7 @@ export const getAllStreams=async(req,res)=>{
 export const getStream=async(req,res)=>{
     try{
     const stream = await Stream.findById(req.params.id)
-      .populate("streamerId", "username avatar bio followerCount isStreamer");
+      .populate("streamerId", "name avatar bio followersCount isStreamer");
 
     if (!stream) {
       return res.status(404).json({
