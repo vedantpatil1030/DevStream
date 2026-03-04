@@ -14,7 +14,7 @@ export const generateAgoraToken = (channelName, uid, role = "publisher") => {
     try {
         if (!APP_ID || !APP_CERTIFICATE) {
             console.error('AGORA_APP_ID:', APP_ID, 'AGORA_APP_CERTIFICATE:', APP_CERTIFICATE);
-            throw new Error('Agora App ID and Certificate must be set in environment variables');
+            throw new Error('Agora App ID and Certificate must be set in envronment variables');
         }
         if (!channelName || !uid) {
             throw new Error('channelName and uid are required to generate Agora token');

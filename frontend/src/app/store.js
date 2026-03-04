@@ -8,28 +8,29 @@ import streamReducer        from "../features/stream/streamSlice";
 import { authApi }          from "../features/auth/authApi";
 import { streamApi }        from "../features/stream/streamApi";
 import { userApi }          from "../features/user/userApi";
+import { vodApi }           from "../features/vod/vodApi";      // ← new
+import { noteApi }          from "../features/note/noteApi";    // ← new
 
 export const store = configureStore({
   reducer: {
     auth:   authReducer,
     chat:   chatReducer,
     stream: streamReducer,
-
-    // RTK Query reducers
     [authApi.reducerPath]:   authApi.reducer,
     [streamApi.reducerPath]: streamApi.reducer,
     [userApi.reducerPath]:   userApi.reducer,
+    [vodApi.reducerPath]:    vodApi.reducer,     // ← new
+    [noteApi.reducerPath]:   noteApi.reducer,    // ← new
   },
-
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       authApi.middleware,
       streamApi.middleware,
       userApi.middleware,
+      vodApi.middleware,     // ← new
+      noteApi.middleware,    // ← new
     ),
 });
 
-// Enable refetchOnFocus / refetchOnReconnect
 setupListeners(store.dispatch);
-
 export default store;

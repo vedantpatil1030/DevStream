@@ -13,6 +13,8 @@ import Register from "./pages/auth/Register";
 import Stream from "./pages/Stream";
 import GoLive from "./pages/GoLive";
 import Profile from "./pages/Profile";
+import Vods from "./pages/vods";
+import VodDetail from "./pages/vod";
 
 export default function App() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -30,6 +32,8 @@ export default function App() {
             {/* Public */}
             <Route path="/" element={<Home />} />
             <Route path="/stream/:id" element={<Stream />} />
+            <Route path="/vods" element={<Vods />} />
+            <Route path="/vods/:id" element={<VodDetail />} />
             <Route
               path="/login"
               element={isAuthenticated ? <Navigate to="/" /> : <Login />}

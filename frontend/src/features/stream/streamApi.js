@@ -32,24 +32,23 @@ export const streamApi = createApi({
     }),
 
     startStream: builder.mutation({
-      query: (body) => ({
-        url: "/start",
-        method: "POST",
-        body,
-      }),
+      query: (body) => ({ url: "/start", method: "POST", body }),
       invalidatesTags: ["Stream"],
     }),
 
     endStream: builder.mutation({
-      query: (id) => ({
-        url: `/${id}/end`,
-        method: "PUT",
-      }),
+      query: (id) => ({ url: `/${id}/end`, method: "PUT" }),
       invalidatesTags: ["Stream"],
     }),
 
     getMyActiveStream: builder.query({
       query: () => "/my/active",
+      providesTags: ["Stream"],
+    }),
+
+    updateStream: builder.mutation({
+      query: ({ id, ...body }) => ({ url: `/${id}/update`, method: "PATCH", body }),
+      invalidatesTags: ["Stream"],
     }),
   }),
 });
@@ -60,4 +59,5 @@ export const {
   useStartStreamMutation,
   useEndStreamMutation,
   useGetMyActiveStreamQuery,
+  useUpdateStreamMutation,
 } = streamApi;

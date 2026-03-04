@@ -9,8 +9,9 @@ import {
   logout,
   setCredentials,
 } from "../../features/auth/authSlice";
-import { Radio, LogOut, Terminal, Tv2, LayoutGrid, ChevronRight } from "lucide-react";
+import { Radio, LogOut, Terminal, Tv2, LayoutGrid, ChevronRight, Film } from "lucide-react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 /* ─── CSS injected once ─────────────────────────────────────── */
 const CSS = `
@@ -45,6 +46,10 @@ const CSS = `
   0%   { transform: scale(0.9); }
   60%  { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 `;
 
@@ -323,6 +328,14 @@ export default function Navbar() {
             path="/"
             active={isAt("/")}
             onClick={() => navigate("/")}
+          />
+
+          <NavLink
+            label="VODs"
+            icon={Film}
+            path="/vods"
+            active={location.pathname.startsWith("/vods")}
+            onClick={() => navigate("/vods")}
           />
 
           {isAuthenticated && (

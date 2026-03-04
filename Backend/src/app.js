@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
 
@@ -7,6 +9,9 @@ import { Server }     from "socket.io";
 import streamRouter   from "./routes/stream.routes.js";
 import userRouter from './routes/user.route.js';
 import { initSocket } from './socket/index.js';
+import vodRoutes  from "./routes/vod.routes.js";
+import noteRoutes from "./routes/note.routes.js";
+import "./jobs/transcribeJob.js";
 
 const app = express();
 const server = createServer(app);
@@ -37,6 +42,8 @@ app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use("/api/streams", streamRouter);
+app.use("/api/vods",  vodRoutes);
+app.use("/api/notes", noteRoutes);
 
 initSocket(io);
 
